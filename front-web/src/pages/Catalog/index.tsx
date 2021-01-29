@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { ProductsResponse } from '../../core/types/Product';
 import { makeRequest } from '../../core/utils/request'
 import ProductCard from './components/ProductCard';
 import './styles.scss';
 
 const Catalog = () => {
+    const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
 
-    //Quando o componente iniciar, buscar a lista de produtos
     useEffect(() => {
         const params = {
             page: 0,
@@ -14,7 +15,7 @@ const Catalog = () => {
         }
 
         makeRequest({ url: '/products', params })
-            .then((response) => console.log(response));
+            .then((response) => setProductsResponse(response.data));
     }, []);
 
     return (
@@ -23,15 +24,11 @@ const Catalog = () => {
                 Catálogo de produtos
         </h1>
             <div className="catalog-products">
-                <Link to="/products/1"><ProductCard /></Link>
-                <Link to="/products/2"><ProductCard /></Link>
-                <Link to="/products/3"><ProductCard /></Link>
-                <Link to="/products/4"><ProductCard /></Link>
-                <Link to="/products/5"><ProductCard /></Link>
-                <Link to="/products/6"><ProductCard /></Link>
-                <Link to="/products/7"><ProductCard /></Link>
-                <Link to="/products/8"><ProductCard /></Link>
-                <Link to="/products/9"><ProductCard /></Link>
+                {productsResponse?.content.map(product => (
+                    <Link to="/products/1" key={product.id}>
+                        <ProductCard product={product} />
+                    </Link>
+                ))}
             </div>
         </div>
     )
