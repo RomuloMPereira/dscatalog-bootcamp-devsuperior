@@ -38,3 +38,13 @@
   color: #407bff;
   cursor: pointer;
 }
+
+.page-active {
+  cursor: pointer;
+  color: #407bff;
+}
+
+.page-inactive {
+  color: #e1e1e1;
+  pointer-events: none;
+}
