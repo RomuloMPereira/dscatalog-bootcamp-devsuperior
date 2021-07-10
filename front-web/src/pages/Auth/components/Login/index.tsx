@@ -4,9 +4,10 @@ import { useForm } from 'react-hook-form';
 import AuthCard from 'pages/Auth/components/Card';
 import ButtonIcon from 'core/components/ButtonIcon';
 import './styles.scss';
+import { makeLogin } from 'core/utils/request';
 
 type FormData = {
-    email: string;
+    username: string;
     password: string;
 }
 
@@ -15,7 +16,7 @@ const Login = () => {
 
     const onSubmit = (data: FormData) => {
         console.log(data);
-        // Chamar API de autenticação
+        makeLogin(data);
     }
 
     return (
@@ -25,7 +26,7 @@ const Login = () => {
                     type="email"
                     className="form-control input-base margin-bottom-30"
                     placeholder="email"
-                    {...register('email')}
+                    {...register('username')}
                 />
                 <input
                     type="password"
