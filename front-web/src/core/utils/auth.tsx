@@ -13,3 +13,10 @@ type LoginResponse = {
 export const saveSessionData = (loginResponse: LoginResponse) => {
     localStorage.setItem('authdata', JSON.stringify(loginResponse));
 }
+
+export const getSessionData = () => {
+    const sessionData = localStorage.getItem('authdata') ?? '{}';
+    const parsedSessionData = JSON.parse(sessionData);
+
+    return parsedSessionData as LoginResponse;
+}
