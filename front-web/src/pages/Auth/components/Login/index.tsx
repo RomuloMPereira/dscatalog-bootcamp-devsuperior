@@ -70,7 +70,7 @@ const Login = () => {
                         type="password"
                         className={`form-control input-base ${errors.password ? 'is-invalid' : ''}`}
                         placeholder="senha"
-                        {...register('password', { required: "Campo obrigatório", minLength: 5 })}
+                        {...register('password', { required: "Campo obrigatório" })}
                     />
                     {errors.password && (
                         <div className="invalid-feedback d-block">
