@@ -29,6 +29,7 @@ const Form = () => {
     const history = useHistory();
     const { productId } = useParams<ParamsType>();
     const [categories, setCategories] = useState<Category[]>();
+    const [uploadedImgUrl, setUploadedImgUrl] = useState('');
     const [isLoadingCategories, setIsLoadingCategories] = useState(false);
     const isEditing = productId !== 'create';
     const formTitle = isEditing ? 'Editar um produto' : 'Cadastrar um produto';
@@ -54,11 +55,15 @@ const Form = () => {
     }, []);
 
     const onSubmit = (data: FormState) => {
-        console.log(data);
+        const payload = {
+            ...data,
+            imgUrl: uploadedImgUrl
+        }
+
         makePrivateRequest({
             url: isEditing ? `/products/${productId}` : '/products',
             method: isEditing ? 'PUT' : 'POST',
-            data
+            data: payload
         })
             .then(() => {
                 toast.info('Produto salvo com sucesso!');
@@ -67,6 +72,10 @@ const Form = () => {
             .catch(() => {
                 toast.error('Erro ao salvar produto!');
             });
+    }
+
+    const onUploadSuccess = (imgUrl: string) => {
+        setUploadedImgUrl(imgUrl);
     }
 
     return (
@@ -127,7 +136,7 @@ const Form = () => {
                             )}
                         </div>
                         <div className="margin-bottom-30">
-                            <ImageUpload />
+                            <ImageUpload onUploadSuccess={onUploadSuccess} />
                         </div>
                     </div>
 

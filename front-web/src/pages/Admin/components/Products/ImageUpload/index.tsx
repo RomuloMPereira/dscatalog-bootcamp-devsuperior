@@ -4,8 +4,11 @@ import './styles.scss';
 import { ReactComponent as UploadPlaceholder } from 'core/assets/images/upload-placeholder.svg';
 import { makePrivateRequest } from 'core/utils/request';
 
+type Props = {
+    onUploadSuccess: (imgUrl: string) => void;
+}
 
-const ImageUpload = () => {
+const ImageUpload = ({ onUploadSuccess }: Props) => {
     const [uploadProgress, setUploadProgress] = useState(0);
     const [uploadedImgUrl, setUploadedImgUrl] = useState('');
 
@@ -27,6 +30,7 @@ const ImageUpload = () => {
         })
             .then((response) => {
                 setUploadedImgUrl(response.data.uri);
+                onUploadSuccess(response.data.uri);
             })
             .catch(() => {
                 toast.error('Erro ao enviar arquivo!');
