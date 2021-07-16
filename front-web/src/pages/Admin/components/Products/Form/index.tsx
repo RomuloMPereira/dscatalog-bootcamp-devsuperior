@@ -9,6 +9,7 @@ import './styles.scss';
 import { useState } from 'react';
 import { Category } from 'core/types/Product';
 import PriceField from './PriceField';
+import ImageUpload from '../ImageUpload';
 
 
 export type FormState = {
@@ -126,18 +127,7 @@ const Form = () => {
                             )}
                         </div>
                         <div className="margin-bottom-30">
-                            <input
-                                {...register('imgUrl', { required: "Campo obrigatório" })}
-                                name="imgUrl"
-                                type="text"
-                                className="form-control input-base"
-                                placeholder="Imagem do produto"
-                            />
-                            {errors.imgUrl && (
-                                <div className="invalid-feedback d-block">
-                                    {errors.imgUrl.message}
-                                </div>
-                            )}
+                            <ImageUpload />
                         </div>
                     </div>
 
