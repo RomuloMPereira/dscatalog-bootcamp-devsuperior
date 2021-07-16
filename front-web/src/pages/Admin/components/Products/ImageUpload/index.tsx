@@ -6,11 +6,13 @@ import { makePrivateRequest } from 'core/utils/request';
 
 type Props = {
     onUploadSuccess: (imgUrl: string) => void;
+    productImgUrl: string;
 }
 
-const ImageUpload = ({ onUploadSuccess }: Props) => {
+const ImageUpload = ({ onUploadSuccess, productImgUrl }: Props) => {
     const [uploadProgress, setUploadProgress] = useState(0);
     const [uploadedImgUrl, setUploadedImgUrl] = useState('');
+    const imgUrl = uploadedImgUrl || productImgUrl;
 
     const onUploadProgress = (progressEvent: ProgressEvent) => {
         const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -78,10 +80,10 @@ const ImageUpload = ({ onUploadSuccess }: Props) => {
                         </div>
                     </>
                 )}
-                {(uploadedImgUrl && uploadProgress === 0) && (
+                {(imgUrl && uploadProgress === 0) && (
                     <img
-                        src={uploadedImgUrl}
-                        alt={uploadedImgUrl}
+                        src={imgUrl}
+                        alt={imgUrl}
                         className="uploaded-image"
                     />
                 )}
