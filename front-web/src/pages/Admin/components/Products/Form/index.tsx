@@ -28,7 +28,7 @@ const Form = () => {
     const { register, handleSubmit, formState: { errors }, setValue, control } = useForm<FormState>();
     const history = useHistory();
     const { productId } = useParams<ParamsType>();
-    const [categories, setCategories] = useState<Category[]>();
+    const [categories, setCategories] = useState<Category[]>([]);
     const [uploadedImgUrl, setUploadedImgUrl] = useState('');
     const [isLoadingCategories, setIsLoadingCategories] = useState(false);
     const [productImgUrl, setProductImgUrl] = useState('');
