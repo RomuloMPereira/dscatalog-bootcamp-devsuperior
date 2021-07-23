@@ -21,6 +21,8 @@
 }
 
 .upload-placeholder {
+    float: left;
+
     .upload-progress-container {
         position: absolute;
         bottom: 10px;
@@ -46,5 +48,32 @@
     .upload-button-container label {
         word-wrap: none;
         width: 200px;
+    }
+}
+
+@media (max-width: 576px) {
+    .upload-button-container label {
+        width: 250px;
+    }
+
+    small {
+        display: none;
+    }
+
+    .upload-placeholder {
+        width: 100vw !important;
+        margin-left: 40px;
+
+        .uploaded-image {
+            align-self: center;
+        }
+
+        .upload-progress {
+            margin-left: -20px;
+        }
+
+        .upload-progress-container {
+            margin-left: 20px;
+        }
     }
 }

@@ -2,7 +2,6 @@
     padding: 95px 50px 50px 50px;
     border-radius: 20px;
     width: 550px;
-
 }
 
 .auth-card-title {
@@ -13,4 +12,15 @@
     letter-spacing: -0.015em;
     color: #263238;
     font-weight: normal;
+}
+
+@media (max-width: 576px) {
+    .auth-card {
+        margin: 0 auto;
+        width: 90vw;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
